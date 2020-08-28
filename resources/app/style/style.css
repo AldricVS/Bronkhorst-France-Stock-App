@@ -1,0 +1,223 @@
+/*GENERAL*/
+:root{
+    --main_lighter-color: rgb(144, 167, 201);
+    --main-color: rgb(103, 148, 214);
+    --main-darker-color: rgb(23, 59, 112);
+    --background-color: #e6e6e6;
+    --transparent-gray: rgba(48, 48, 48, 0.678); 
+    --transparent-black: rgba(0, 0, 0, 0.418); 
+
+    --red-color: rgb(184, 28, 28);
+
+    --button-color: #dddddd;
+    --button-hovered-color: #777777; 
+
+    --fast-transition : 500ms ease;
+}
+
+body{
+    font-size: 18px;
+    background-color: var(--background-color);
+}
+
+textarea, input[type="text"], input[type="number"]{
+    height: 50px;
+}
+
+button{
+    background-color: var(--button-color);
+}
+
+header > h1{
+    text-align: center;
+    margin-top: 1.2em;
+    background: -webkit-linear-gradient(45deg, var(--main-color), var(--main-darker-color));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+button:hover{
+    background-color: var(--button-hovered-color);
+    border-color: var(--background-color);
+    color: white;
+}
+
+.centered{
+    text-align: center;
+}
+
+.highlighted{
+    animation: 2s ease 0.3s infinite alternate highlihgt_in;
+}
+
+.cornered:hover hr{
+    width: 80%;
+}
+
+@keyframes highlihgt_in{
+    to{
+        background-color: var(--red-color);
+        color: white;
+    }
+}
+
+.space_under{
+    margin-bottom: 3em;
+}
+
+.space_under_tiny{
+    margin-bottom: 1.2em;
+}
+
+.search_and_select{
+    display: flex;
+    justify-content: space-between;
+}
+
+/*TABLE STYLE*/
+#main_table thead tr th *{
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    border: none;
+    background-color: var(--main-darker-color);
+    padding: 0;  
+    color: white;
+    transition: var(--fast-transition);  
+}
+
+#main_table thead tr th{
+    border: 1px solid black;
+    padding: 0;
+}
+
+#main_table thead tr th *:hover{
+    background-color: var(--main-color);
+    color: black;
+}
+
+
+#table_body tr td{
+    border: 1px solid black;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    white-space: normal;
+    padding: 10px;
+}
+
+#table_body tr:nth-child(even){
+    background-color: var(--main-color);
+}
+
+#table_body tr:nth-child(odd){
+    background-color: var(--main_lighter-color);
+}
+
+#table_body tr td[class="but"]{
+    border: none;
+    padding: 0;
+    background-color: var(--background-color);
+    width: 20%;
+    margin-right: 15px;
+}
+
+#table_body tr td[class="ref"]{
+    width: 20%;
+}
+
+#table_body tr td[class="dsc"]{
+    width: 30%;
+}
+
+#table_body tr td[class="prx"]{
+    width: 10%;
+}
+
+#table_body tr td[class="qty"]{
+    width: 10%;
+}
+
+#main_table{
+    width: 90%;
+    max-width: 90%;
+    margin-left: 5%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+/*FORMS*/
+hr{
+    border: 2px solid var(--red-color);
+    border-radius: 10px;
+    width: 30%;
+    transition: 1s ease; 
+    font-weight: bold;
+}
+
+/*POP UPS*/
+.pop_up{
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--transparent-gray);
+}
+
+.pop_up input[type="text"], .pop_up input[type="number"], .pop_up input[type="file"]{
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.pop_up input[type="text"]{
+    width: 80%;
+}
+
+#pop_up_loading{
+    display: flex;
+    height: 100%;
+    line-height: 100%;
+    z-index: 9;
+}
+
+#pop_up_loading div{
+    width: 4em;
+    height: 4em;
+    border: 5px solid gray;
+    border-top-color: white;
+    border-radius: 100%;
+    animation: fullRotation 0.6s infinite cubic-bezier(0.5, 1, 0.5, 0.6);
+}
+
+@keyframes fullRotation{
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+.pop_up_input form{
+    background-color: var(--transparent-black); 
+    width: 70%;  
+    padding: 30px;
+}
+
+.pop_up_input{
+	display: none;
+    z-index: 9;
+}
+
+.pop_up_input .form_description{
+	background-color: black;
+	font-size: 19px;
+	color: gray;
+}
+
+.pop_up_input input[type="file"]{
+	color: whitesmoke;
+}

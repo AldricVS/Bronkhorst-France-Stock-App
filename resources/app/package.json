@@ -1,0 +1,10 @@
+{
+    "name": "Bronkhorst Stock",
+    "description": "Manipulateur de stock permettant de gérer les éléments displonibles et d'exporter ces données vers un fichier xlsx.",
+    "version": "1.0.0",
+    "main": "main.js",
+    "author": "Aldric Vitali Silvestre",
+    "scripts": {
+        "start": "electron ."
+    }
+}

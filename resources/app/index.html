@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Base de données</title>
+	<meta charset="utf-8">
+	<meta name="author" content="Aldric Vitali Silvestre">
+
+	<link rel="stylesheet" href="style/bootstrap.min.css">
+	<link rel="stylesheet" href="style/style.css">
+
+	<script src="scripts/jquery-3.5.1.min.js"></script>
+	<script src="scripts/jquery-css.min.js"></script>
+	<script src="scripts/DatabaseRow.js"></script>
+	<script src="scripts/consts.js"></script>
+	<script src="scripts/excelManager.js"></script>
+	<script src="scripts/misc.js"></script>
+	<script src="scripts/table_creator.js"></script>
+	<script src="scripts/table_buttons_manager.js"></script>
+	<script src="scripts/table_sortNsearch.js"></script>
+
+</head>
+
+<body>
+	<header class="space_under_tiny">
+		<h1>Stock de Bronkhorst France</h1>
+	</header>
+	<main>
+
+		<div id="pop_up_loading" class="pop_up">
+			<div></div>
+		</div>
+
+		<div class="pop_up pop_up_input" id="pop_up_modify_row">
+			<form class="centered" onsubmit="confirmModPopUp(); return false;">
+				<fieldset>
+					<legend style="color: white;">Modifier</legend>
+					<input type="text" id="mod_ref_id" required><br />
+					<input type="text" id="mod_dsc_id" required><br />
+					<input type="number" step="0.01" min="0" id="mod_prx_id" required><br />
+					<input type="number" min="0" id="mod_qty_id" required><br />
+					<div>
+						<input type="button" onclick="closeModPopUp()" value="Fermer">
+						<input type="submit" value="Confirmer">
+					</div>
+				</fieldset>
+			</form>
+		</div>
+
+		<div class="pop_up pop_up_input" id="pop_up_add_row">
+			<form class="centered" onsubmit="confirmAddPopUp(); return false;">
+				<fieldset>
+					<legend style="color: white;">Ajouter une référence</legend>
+					<input type="text" id="add_ref_id" placeholder="Référence" required><br />
+					<input type="text" id="add_dsc_id" placeholder="Description" required><br />
+					<input type="number" step="0.01" min="0" placeholder="Prix" id="add_prx_id" required><br />
+					<input type="number" min="0" id="add_qty_id" placeholder="Quantité" required><br />
+					<div>
+						<input type="button" onclick="closeAddPopUp()" value="Fermer">
+						<input type="submit" value="Confirmer">
+					</div>
+				</fieldset>
+			</form>
+		</div>
+
+		<div class="pop_up pop_up_input" id="pop_up_insert">
+			<form class="centered" onsubmit="confirmInsertPopUp(); return false;">
+				<fieldset>
+					<legend style="color: white;">Insérer dans un fichier</legend>
+					<div class="form_description">
+						<p>Choisissez le fichier dans lequel insérer les nouvelles quantités,
+							puis indiquez le nom de la première case de la colonne qui va contenir ces nouvelles
+							données.</p>
+						<p>Un nouveau fichier sera alors créé, contenant la colonne remplie</p>
+						<p>(si de il y a de nouveaux articles, ils seront ajoutés aussi)</p>
+					</div>
+					<input type="file" id="insert_file_id"
+						accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
+					<input type="text" id="insert_name_id" placeholder="Nom de colonne" required>
+					<div>
+						<input type="button" onclick="closeInsertPopUp()" value="Fermer">
+						<input type="submit" value="Confirmer">
+					</div>
+				</fieldset>
+			</form>
+		</div>
+
+		<div class="centered space_under_tiny">
+			<button id="add_row_id" onclick="showAddRowPopUp()">Ajouter une référence</button>
+			<button id="download_button_id" onclick="downloadFile()">Exporter en nouveau fichier Excel</button>
+			<button id="insert_button_id" onclick="showInsertPopUp()">insérer dans fichier Excel</button>
+			<button id="update_button_id" onclick="updateFileFromTable()">Mettre à jour</button>
+		</div>
+
+		<div class="cornered space_under">
+			<hr />
+			<div class="search_and_select">
+				<div></div>
+				<form id="search_form_id" onsubmit="searchReference(); return false;">
+					<input type="text" id="search_input_id" name="search" placeholder="Référence">
+					<input type="submit" value="rechercher">
+				</form>
+
+				<form id="search_desc_id" onsubmit="searchDescription(); return false;">
+					<input type="text" id="search_description_id" name="search" placeholder="Description">
+					<input type="submit" value="rechercher">
+				</form>
+				<div></div>
+			</div>
+			<hr />
+		</div>
+
+		<table id="main_table">
+			<thead>
+				<tr>
+					<th><button id="reference_header" onclick="sortTable(this.id)">Référence</button></th>
+					<th><button id="description_header" onclick="sortTable(this.id)">Description</button></th>
+					<th><button id="price_header" onclick="sortTable(this.id)">Prix</button></th>
+					<th><button id="quantity_header" onclick="sortTable(this.id)">Quantité</button></th>
+				</tr>
+			</thead>
+			<tbody id="table_body">
+
+			</tbody>
+		</table>
+
+
+	</main>
+</body>
+<script src="scripts/start.js"></script>
+
+</html>
